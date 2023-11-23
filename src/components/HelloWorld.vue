@@ -1,16 +1,26 @@
 <template>
   <div class="hello">
     <NavBar></NavBar>
+    <div class="flex">
+      <div class="w-2/5">
+        <ProductContent></ProductContent>
+      </div>
+      
+    </div>
+    
+
+
   </div>
 </template>
 
 <script>
 import NavBar from './NavBar.vue';
-
+import ProductContent from './ProductContent.vue';
 
 export default {
   components:{
-    NavBar
+    NavBar,
+    ProductContent
   },
   name: 'HelloWorld',
   props: {
