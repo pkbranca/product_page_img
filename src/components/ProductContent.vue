@@ -15,7 +15,6 @@
 
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
-
     <div class="swiper-scrollbar"></div>
   </div>
 </template>
@@ -71,6 +70,7 @@ export default {
 <style scoped>
 .swiper{
   height: 500px;
+  background-color: white;
 }
 .swiper-slide{
   display: flex;
@@ -78,5 +78,11 @@ export default {
 .swiper-slide img{
   margin: auto;
   max-height: 340px;
+}
+.swiper-button-prev:after, .swiper-rtl .swiper-button-next:after{
+  font-size: 14px;
+}
+.swiper-button-next:after, .swiper-rtl .swiper-button-prev:after{
+  font-size: 14px;
 }
 </style>
