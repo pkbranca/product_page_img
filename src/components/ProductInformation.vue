@@ -2,7 +2,7 @@
   <div class="information_content">
     <p class="product_brand">SAMSUNG</p>
     <h1 class="product_name">Samsung Galaxy S23 Plus 5G</h1>
-    <p class="product_price">880.00</p>
+    <p class="product_price">£ 880.00</p>
     <hr class="space">
     <p><b>Sim:</b> Dual SIM</p>
     <p><b>Condition:</b> LIKE NEW</p>
