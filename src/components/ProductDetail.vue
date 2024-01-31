@@ -7,7 +7,9 @@
       </div>
       <!-- <img class="imageZoomer" src="../assets/product-image-front.jpeg" alt=""> -->
       <div class="imageWrapper">
-        <div :style="{ backgroundPositionX: computedPositionX, backgroundPositionY: computedPositionY}"
+        <div :style="{ backgroundPositionX: computedPositionX,
+          backgroundPositionY: computedPositionY,
+          backgroundImage: `url(${computedUrlImage})`}"
         class="imageZoomer"></div>
       </div>
       <ProductInformation></ProductInformation>
@@ -36,7 +38,8 @@ export default {
   data(){
     return{
       positionX: '1px',
-      positionY: '1px'
+      positionY: '1px',
+      urlImage: ''
     }
   },
   computed:{
@@ -45,6 +48,9 @@ export default {
     },
     computedPositionY: function(){
       return this.positionY
+    },
+    computedUrlImage: function(){
+      return this.urlImage;
     }
   },
   methods: {
@@ -54,11 +60,12 @@ export default {
         imageWrapper.style.display = 'none';
       }
     },
-    onHoverPosition(positionX, positionY) {
+    onHoverPosition(positionX, positionY, url) {
       let imageWrapper = document.getElementsByClassName('imageWrapper')[0];
       imageWrapper.style.display = 'block';
-      this.positionX = positionX;
-      this.positionY = positionY;
+      this.positionX = `-${(positionX*1.5)}px`;
+      this.positionY = `-${(positionY * 1.5)}px`;
+      this.urlImage = require(`../assets/${url}`);
     }
   }
 }
@@ -72,15 +79,15 @@ export default {
   height: 500px;
   width: 400px;
   overflow: hidden;
-  left: 440px;
+  left: 490px;
   z-index: 1;
 }
   .imageZoomer{
     position: absolute;
     height: 500px;
     width: 400px;
-    z-index: 1;
     background-image: url('../assets/product-image-front.jpeg');
+    z-index: 1;
     background-repeat: no-repeat;
     background-color: white;
     left: 0;

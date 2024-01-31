@@ -1,16 +1,16 @@
 <template>
   <div ref="swiper" class="swiper shadow-lg">
     <span id="lens" v-show="activeLens"
-    :style="markerInfoStyle"  @mousemove="mouseOver" @mouseout="mouseOut"></span>
+    :style="markerInfoStyle"  @mousemove="mouseOver($event, imgArray[activeIndex])"  @mouseout="mouseOut"></span>
     <div class="swiper-wrapper" id="swiper-wrapper">
       <div class="swiper-slide">
-        <img @mousemove="mouseOver"  src="../assets/product-image-front.jpeg" alt="">
+        <img @mousemove="mouseOver($event, imgArray[activeIndex])"  src="../assets/product-image-front.jpeg" alt="">
       </div>
       <div class="swiper-slide">
-        <img src="../assets/product-image-back.jpeg" alt="">
+        <img @mousemove="mouseOver($event, imgArray[activeIndex])" src="../assets/product-image-back.jpeg" alt="">
       </div>
       <div class="swiper-slide">
-        <img src="../assets/product-image.jpeg" alt="">
+        <img @mousemove="mouseOver($event, imgArray[activeIndex])" src="../assets/product-image.jpeg" alt="">
       </div>
 
     </div>
@@ -36,6 +36,10 @@ export default {
   emits:['hover-position', 'mouse-out'],
   data() {
     return {
+      imgArray:['product-image-front.jpeg',
+      'product-image-back.jpeg',
+      'product-image.jpeg'],
+
       activeLens: false,
       activeIndex: 0,
       lensLeft: 0,
@@ -81,15 +85,14 @@ export default {
     }
   },
   methods: {
-    mouseOver: function(event){
+    mouseOver: function(event, url){
       this.activeLens = true;
-      let canvas = document.getElementById("swiper-wrapper");
+      let canvas = document.getElementsByClassName("swiper-slide-active")[0];
       let canvasBounds = canvas.getBoundingClientRect();
 
-      this.lensLeft = event.pageX - (canvasBounds.x + 75);
+      this.lensLeft = event.pageX -  (canvasBounds.x + 75);
       this.lensTop = event.pageY - (canvasBounds.y + 75);
-      console.log("LNETS", this.lensLeft, this.lensTop)
-      this.$emit('hover-position', '-'+(this.lensLeft )+'px', '-'+(this.lensTop)+'px');
+      this.$emit('hover-position', this.lensLeft,this.lensTop, url);
     },
     mouseOut: function(){
       this.activeLens = false;
