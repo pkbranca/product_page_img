@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div>
     <NavBar></NavBar>
     <div class="flex productContent">
       <div class="flex w-2/5">
@@ -14,9 +14,7 @@
       </div>
       <ProductInformation></ProductInformation>
     </div>
-
-
-
+    <ModalDetail></ModalDetail>
   </div>
 </template>
 
@@ -24,12 +22,13 @@
 import NavBar from './NavBar.vue';
 import ProductContent from './ProductContent.vue';
 import ProductInformation from './ProductInformation.vue';
-
+import ModalDetail from './ModalDetail.vue';
 export default {
   components:{
     NavBar,
     ProductContent,
-    ProductInformation
+    ProductInformation,
+    ModalDetail
 },
   name: 'HelloWorld',
   props: {
