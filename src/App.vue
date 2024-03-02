@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <ProductDetail msg="Welcome to Your Vue.js App"/>
+    <Home msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
-import ProductDetail from './components/ProductDetail.vue'
+import Home from './components/Home.vue'
 
 export default {
   name: 'App',
   components: {
-    ProductDetail
+    Home
   }
 }
 </script>
@@ -26,3 +26,4 @@ export default {
   background-color: #f5f5f5;
 }
 </style>
+./components/Home.vue

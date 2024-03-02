@@ -16,22 +16,13 @@
           </div>
           <!--body-->
           <div class="relative p-6 flex-auto h-max-full flex">
-            <div class="w-8/12	">
-              <img class="m-auto h-2/5" :src=imagePrincipal alt="">
+            <div class="w-8/12 principal">
+              <img class="m-auto h-2/5 principal__img" :src=imagePrincipal alt="">
             </div>
             <div class="w-4/12 flex">
-              <div class="imgWrapper" v-for="(phone, index) in phoneArray" :class="{selected: index === currentIndex}">
+              <div class="imgWrapper" v-for="(phone, index) in phoneArray" :class="{selected: index === currentIndexComputed}">
                 <img class="m-auto max-h-full" @click="changeImagePrincipal(index)" :src="phone" alt="">
               </div>
-              <!-- <div class="imgWrapper">
-                <img class="m-auto max-h-full" @click="changeImagePrincipal(0)" src="../assets/product-image-front.jpeg" alt="">
-              </div>
-              <div class="imgWrapper" >
-                <img class="m-auto max-h-full" @click="changeImagePrincipal(1)" src="../assets/product-image-back.jpeg" alt="">
-              </div>
-              <div class="imgWrapper">
-                <img class="m-auto max-h-full" @click="changeImagePrincipal(2)" src="../assets/product-image.jpeg" alt="">
-              </div> -->
             </div>
           </div>
         </div>
@@ -41,9 +32,11 @@
 <script>
 
 export default {
+  props: ['showModal'],
+  emits: ['toggle-modal'],
   data(){
     return{
-      showModal: true,
+      // showModal: true,
       phoneArray: [
       require('../assets/product-image-front.jpeg'),
       require('../assets/product-image-back.jpeg'),
@@ -56,25 +49,37 @@ export default {
   computed: {
     impagePrincipalComputed: function(){
       return  require(this.imagePrincipal);
+    },
+    currentIndexComputed: function(){
+      return this.$store.getters.currentIndex;
     }
   },
  methods: {
     changeImagePrincipal: function(index){
-      this.currentIndex = index;
+      // this.currentIndex = index;
+      this.$store.commit('changeCurrentIndex', index);
       this.imagePrincipal = this.phoneArray[index];
     },
     toggleModal: function(){
-      this.showModal = !this.showModal;
+      // this.showModal = !this.showModal;
+      this.$emit('toggle-modal', false);
+      console.log("UPDATE ");
     }
   }
 }
 
 </script>
 <style>
+  .principal__img{
+    min-height: 500px;
+  }
   .imgWrapper{
     width: 75px;
     justify-content: space-around;
     height: 75px;
+  }
+  .imgWrapper:hover{
+    cursor: pointer;
   }
   .imgWrapper.selected{
     border: 1px solid red;

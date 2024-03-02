@@ -1,10 +1,10 @@
 <template>
   <div ref="swiper" class="swiper shadow-lg">
     <span id="lens" v-show="activeLens"
-    :style="markerInfoStyle"  @mousemove="mouseOver($event, imgArray[activeIndex])"  @mouseout="mouseOut"></span>
+    :style="markerInfoStyle"  @mousemove="mouseOver($event, imgArray[activeIndex])"  @mouseout="mouseOut" @click="openModal"></span>
     <div class="swiper-wrapper" id="swiper-wrapper">
       <div class="swiper-slide">
-        <img @mousemove="mouseOver($event, imgArray[activeIndex])"  src="../assets/product-image-front.jpeg" alt="">
+        <img  @mousemove="mouseOver($event, imgArray[activeIndex])"  src="../assets/product-image-front.jpeg" alt="">
       </div>
       <div class="swiper-slide">
         <img @mousemove="mouseOver($event, imgArray[activeIndex])" src="../assets/product-image-back.jpeg" alt="">
@@ -33,7 +33,7 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
 export default {
-  emits:['hover-position', 'mouse-out'],
+  emits:['hover-position', 'mouse-out', 'open-modal'],
   data() {
     return {
       imgArray:['product-image-front.jpeg',
@@ -71,7 +71,9 @@ export default {
        // Events
        on: {
         slideChange: (swiper) => {
-          this.activeIndex = swiper.realIndex
+
+          this.activeIndex = swiper.realIndex;
+          this.$store.commit('changeCurrentIndex', this.activeIndex);
         },
       },
     })
@@ -85,6 +87,9 @@ export default {
     }
   },
   methods: {
+    openModal(){
+      this.$emit('open-modal');
+    },
     mouseOver: function(event, url){
       this.activeLens = true;
       let canvas = document.getElementsByClassName("swiper-slide-active")[0];

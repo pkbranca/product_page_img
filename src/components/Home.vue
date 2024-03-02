@@ -3,30 +3,30 @@
     <NavBar></NavBar>
     <div class="flex productContent">
       <div class="flex w-2/5">
-        <ProductContent @hover-position="onHoverPosition" @mouse-out="onMouseOut"></ProductContent>
+        <ProductSwiper @open-modal="openModal" @hover-position="onHoverPosition" @mouse-out="onMouseOut"></ProductSwiper>
       </div>
-      <!-- <img class="imageZoomer" src="../assets/product-image-front.jpeg" alt=""> -->
       <div class="imageWrapper">
         <div :style="{ backgroundPositionX: computedPositionX,
-          backgroundPositionY: computedPositionY,
-          backgroundImage: `url(${computedUrlImage})`}"
+                       backgroundPositionY: computedPositionY,
+                       backgroundImage: `url(${computedUrlImage})`}"
         class="imageZoomer"></div>
       </div>
       <ProductInformation></ProductInformation>
     </div>
-    <ModalDetail></ModalDetail>
+    <button @click="onToggleModal()">show modal</button>
+    <ModalDetail :show-modal="showModal" @toggle-modal="onToggleModal()"></ModalDetail>
   </div>
 </template>
 
 <script>
 import NavBar from './NavBar.vue';
-import ProductContent from './ProductContent.vue';
+import ProductSwiper from './ProductSwiper.vue';
 import ProductInformation from './ProductInformation.vue';
 import ModalDetail from './ModalDetail.vue';
 export default {
   components:{
     NavBar,
-    ProductContent,
+    ProductSwiper,
     ProductInformation,
     ModalDetail
 },
@@ -38,7 +38,8 @@ export default {
     return{
       positionX: '1px',
       positionY: '1px',
-      urlImage: ''
+      urlImage: '',
+      showModal: false
     }
   },
   computed:{
@@ -53,6 +54,12 @@ export default {
     }
   },
   methods: {
+    openModal(){
+      this.showModal = true;
+    },
+    onToggleModal(){
+      this.showModal = !this.showModal;
+    },
     onMouseOut(value){
       if(!value){
         let imageWrapper = document.getElementsByClassName('imageWrapper')[0];

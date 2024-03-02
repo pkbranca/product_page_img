@@ -1,8 +1,8 @@
 <template>
   <div class="information_content">
-    <p class="product_brand">SAMSUNG</p>
-    <h1 class="product_name">Samsung Galaxy S23 Plus 5G</h1>
-    <p class="product_price">£ 880.00</p>
+    <p class="product__brand">SAMSUNG</p>
+    <h1 class="product__name">Samsung Galaxy S23 Plus 5G</h1>
+    <p class="product__price">£ 880.00</p>
     <hr class="space">
     <p><b>Sim:</b> Dual SIM</p>
     <p><b>Condition:</b> LIKE NEW</p>
@@ -40,11 +40,11 @@
 .information_content p{
   margin: 20px 0;
 }
-.product_name{
+.product__name{
   font-size: 25px;
   font-weight: bold;
 }
-.product_price{
+.product__price{
   font-size: 22px;
   font-weight: bold;
 }
@@ -52,7 +52,7 @@
   height: 5px;
   background-color: #e7e7e7;
 }
-  .product_brand{
+  .product__brand{
     color: gray;
   }
 </style>
