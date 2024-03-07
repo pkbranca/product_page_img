@@ -6,7 +6,7 @@
           <!--header-->
           <div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
             <h3 class="text-3xl font-semibold">
-              Modal Title
+              <!-- Modal Title -->
             </h3>
             <button class="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold" v-on:click="toggleModal()">
               <span class="bg-transparent text-black h-6 w-6 text-2xl block">
@@ -15,11 +15,11 @@
             </button>
           </div>
           <!--body-->
-          <div class="relative p-6 flex-auto h-max-full flex">
+          <div class="relative p-6 flex-auto h-max-full flex principal_content">
             <div class="w-8/12 principal">
-              <img class="m-auto h-2/5 principal__img" :src=imagePrincipal alt="">
+              <img class="m-auto h-2/5 principal__img" :src=currentImgPrincipal alt="">
             </div>
-            <div class="w-4/12 flex">
+            <div class="w-4/12 swiper_container flex">
               <div class="imgWrapper" v-for="(phone, index) in phoneArray" :class="{selected: index === currentIndexComputed}">
                 <img class="m-auto max-h-full" @click="changeImagePrincipal(index)" :src="phone" alt="">
               </div>
@@ -52,6 +52,9 @@ export default {
     },
     currentIndexComputed: function(){
       return this.$store.getters.currentIndex;
+    },
+    currentImgPrincipal: function(){
+      return this.$store.getters.getImagePrincipal;
     }
   },
  methods: {
@@ -83,5 +86,25 @@ export default {
   }
   .imgWrapper.selected{
     border: 1px solid red;
+  }
+  @media only screen and (max-width: 1025px) {
+    
+  }
+  @media only screen and (max-width: 1024px) {
+    .principal_content{
+      flex-direction: column;
+    }
+    .principal{
+      width: 100% !important;
+      max-height: 400px;
+    }
+    .principal__img{
+      max-height: 400px;
+      min-height: 400px;
+    }
+    .swiper_container{
+      padding-top: 20px;
+      width: 100% !important;
+    }
   }
 </style>

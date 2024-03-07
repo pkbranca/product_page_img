@@ -18,11 +18,15 @@ export default new Vuex.Store({
   getters: {
     currentIndex(state){
       return state.currentIndex;
+    },
+    getImagePrincipal(state){
+      return state.imagePrincipal;
     }
   },
   mutations: {
     changeCurrentIndex(state,index){
       state.currentIndex = index;
+      state.imagePrincipal = state.productImgList[index];
     }
   },
   actions: {

@@ -1,21 +1,19 @@
 <template>
   <div ref="swiper" class="swiper shadow-lg">
     <span id="lens" v-show="activeLens"
-    :style="markerInfoStyle"  @mousemove="mouseOver($event, imgArray[activeIndex])"  @mouseout="mouseOut" @click="openModal"></span>
+    :style="markerInfoStyle" @mousemove="mouseOver($event, imgArray[activeIndex])" @mouseout="mouseOut" @click="openModal()"></span>
     <div class="swiper-wrapper" id="swiper-wrapper">
       <div class="swiper-slide">
-        <img  @mousemove="mouseOver($event, imgArray[activeIndex])"  src="../assets/product-image-front.jpeg" alt="">
+        <img  @mousemove="mouseOver($event, imgArray[activeIndex])" @click="openModal()"  src="../assets/product-image-front.jpeg" alt="">
       </div>
       <div class="swiper-slide">
-        <img @mousemove="mouseOver($event, imgArray[activeIndex])" src="../assets/product-image-back.jpeg" alt="">
+        <img @mousemove="mouseOver($event, imgArray[activeIndex])" @click="openModal()" src="../assets/product-image-back.jpeg" alt="">
       </div>
       <div class="swiper-slide">
-        <img @mousemove="mouseOver($event, imgArray[activeIndex])" src="../assets/product-image.jpeg" alt="">
+        <img @mousemove="mouseOver($event, imgArray[activeIndex])" @click="openModal()" src="../assets/product-image.jpeg" alt="">
       </div>
-
     </div>
     <div class="swiper-pagination"></div>
-
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
     <div class="swiper-scrollbar"></div>
@@ -88,9 +86,13 @@ export default {
   },
   methods: {
     openModal(){
+      console.log("CLICK");
       this.$emit('open-modal');
     },
     mouseOver: function(event, url){
+      if(window.innerWidth < 1024){
+        return;
+      }
       this.activeLens = true;
       let canvas = document.getElementsByClassName("swiper-slide-active")[0];
       let canvasBounds = canvas.getBoundingClientRect();
@@ -139,5 +141,11 @@ export default {
   }
   .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after{
     font-size: 14px;
+  }
+  @media only screen  and (max-width: 1024px) {
+    .swiper-slide img{
+      margin-top: 10px;
+    }
+
   }
 </style>

@@ -34,7 +34,8 @@
 }
 .information_content{
   text-align: left;
-  padding-left: 50px;
+  padding-left: 15px;
+  padding-right: 15px;
   width: 100%;
 }
 .information_content p{
@@ -54,5 +55,17 @@
 }
   .product__brand{
     color: gray;
+  }
+
+  @media only screen  and (max-width: 1024px) {
+    .information_content{
+      padding-bottom: 30px;
+    }
+    p.product__brand{
+      margin: 20px 0 10px 0;
+    }
+    p.product__price{
+      margin: 10px 0;
+    }
   }
 </style>

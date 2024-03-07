@@ -26,4 +26,3 @@ export default {
   background-color: #f5f5f5;
 }
 </style>
-./components/Home.vue

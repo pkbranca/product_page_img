@@ -2,7 +2,7 @@
   <div>
     <NavBar></NavBar>
     <div class="flex productContent">
-      <div class="flex w-2/5">
+      <div class="flex productContent__swiper w-2/5">
         <ProductSwiper @open-modal="openModal" @hover-position="onHoverPosition" @mouse-out="onMouseOut"></ProductSwiper>
       </div>
       <div class="imageWrapper">
@@ -13,7 +13,6 @@
       </div>
       <ProductInformation></ProductInformation>
     </div>
-    <button @click="onToggleModal()">show modal</button>
     <ModalDetail :show-modal="showModal" @toggle-modal="onToggleModal()"></ModalDetail>
   </div>
 </template>
@@ -98,28 +97,39 @@ export default {
     background-color: white;
     left: 0;
   }
-.productContent{
-  max-width: 1170px;
-  margin: auto;
-  padding-top: 70px;
-  position: relative;
-}
-.hello{
-  background-color: #f5f5f5;
-  min-height: 1000px;
-}
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+  .productContent{
+    max-width: 1170px;
+    margin: auto;
+    padding-top: 70px;
+    position: relative;
+  }
+  .hello{
+    background-color: #f5f5f5;
+    min-height: 1000px;
+  }
+  h3 {
+    margin: 40px 0 0;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  a {
+    color: #42b983;
+  }
+  @media only screen  and (max-width: 1024px) {
+    .productContent{
+      padding-top: 20px;
+      flex-direction: column;
+    }
+    .productContent__swiper{
+      width: 100%;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
 </style>
